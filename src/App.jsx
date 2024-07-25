@@ -51,25 +51,36 @@ function App() {
 
     const routerPush = useNavigate();
 
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100); // 지연 시간을 100ms로 설정하여 렌더링 후에 스크롤을 조정
+
+        return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 정리
+    }, []);
     return (
-        <div className={"flexColumn flexAlign-column"} style={{width:"100vw"}}>
-            <div className={"h12"}/>
-            <div className={"flexRow flexAlign-between w-full"} style={{padding:"0px 20px"}}>
-                <img src={"/images/logos_instagram.svg"} className={"cursor"} onClick={()=>{routerPush("/")}}/>
-                <div className={"flexRow flexAlign-column'"}>
-                    <img src={"/images/Vector1.svg"}/>
-                    <div className={"w24"}/>
-                    <img src={"/images/Vector2.svg"}/>
-                    <div className={"w24"}/>
-                    <img src={"/images/Vector3.svg"}/>
+        <div className={"flexAlign"} style={{width:"100vw"}}>
+            <div className={"flexColumn flexAlign-column"} style={{width:"100vw", maxWidth:"500px"}}>
+                <div className={"h12"}/>
+                <div className={"flexRow flexAlign-between w-full"} style={{padding:"0px 20px"}}>
+                    <img src={"/images/logos_instagram.svg"} className={"cursor"} onClick={()=>{routerPush("/")}}/>
+                    <div className={"flexRow flexAlign-column'"}>
+                        <img src={"/images/Vector1.svg"}/>
+                        <div className={"w24"}/>
+                        <img src={"/images/Vector2.svg"}/>
+                        <div className={"w24"}/>
+                        <img src={"/images/Vector3.svg"}/>
+                    </div>
                 </div>
+                <div className={"h12"}/>
+                <div className={"h1 w-full"} style={{backgroundColor:"#E0E0E0"}}/>
+                <Routes>
+                    <Route path="/" element={<Home />} />,
+                </Routes>
             </div>
-            <div className={"h12"}/>
-            <div className={"h1 w-full"} style={{backgroundColor:"#E0E0E0"}}/>
-            <Routes>
-                <Route path="/" element={<Home />} />,
-            </Routes>
         </div>
+
     )
 }
 

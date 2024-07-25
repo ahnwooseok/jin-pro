@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const VideoComponent = ({ item }) => {
+const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt, modalOpen }) => {
     const videoRef = useRef(null);
     const [isVideoEnded, setIsVideoEnded] = useState(false);
 
@@ -13,23 +13,28 @@ const VideoComponent = ({ item }) => {
                 event.preventDefault();
                 alert('Clicks are disabled as the video has ended.');
             } else {
-                alert('video clk');
+                addRecordToAirtable(fields);
+                setModalOpen2(true);
             }
         };
 
-        video.addEventListener('click', handleClick, true);
+        if (video) {
+            video.addEventListener('click', handleClick, true);
+        }
 
         return () => {
-            video.removeEventListener('click', handleClick, true);
+            if (video) {
+                video.removeEventListener('click', handleClick, true);
+            }
         };
-    }, [isVideoEnded]);
+    }, [isVideoEnded, fields, addRecordToAirtable, setModalOpen2]);
 
     useEffect(() => {
         const video = videoRef.current;
 
         const handleIntersection = (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !modalOpen) {
                     video.play();
                 } else {
                     video.pause();
@@ -50,7 +55,7 @@ const VideoComponent = ({ item }) => {
                 observer.unobserve(video);
             }
         };
-    }, []);
+    }, [modalOpen]);
 
     const handleVideoEnd = () => {
         setIsVideoEnded(true);
@@ -64,7 +69,7 @@ const VideoComponent = ({ item }) => {
                 onEnded={handleVideoEnd}
                 controls={false} // Remove default controls
             >
-                <source src="/images/ad-1.mp4" type="video/mp4" />
+                <source src={`/images/ad-${randomInt}.mp4`} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             {isVideoEnded && (
