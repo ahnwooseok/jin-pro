@@ -61,12 +61,19 @@ function Home() {
         return regex.test(nickname);
     };
     const handleEnter = () => {
-        if (validateNickname(nickname)) {
+        // if (validateNickname(nickname)) {
+        //     console.log('Valid nickname:', nickname);
+        //     // 추가적인 처리 로직 추가 가능
+        //     setModalOpen(false);
+        // } else {
+        //     alert('Nickname must be 5-20 characters long and include both letters and numbers.');
+        // }
+        if (nickname.length !== 0) {
             console.log('Valid nickname:', nickname);
             // 추가적인 처리 로직 추가 가능
             setModalOpen(false);
         } else {
-            alert('Nickname must be 5-20 characters long and include both letters and numbers.');
+            alert('Please enter your nickname.');
         }
     };
 
@@ -123,9 +130,6 @@ function Home() {
         }
     }
 
-
-
-
     return (
         <div className="w-full">
             {postArr.map((item, idx) => {
@@ -135,7 +139,7 @@ function Home() {
                             <div className={"flexRow flexAlign-column"}>
                                 {item === "ad" ? <img src={`/images/advertise_img.png`} style={{width:"40px", height:"40px"}}/> : <img src={`/images/profile${item.slice(-1)}.png`} style={{width:"40px", height:"40px"}}/>}
                                 <div className={"w6"}/>
-                                <div style={{fontSize:"14px", fontWeight:"500", color:"#000"}}>{item === "post001" ? "Jennie_99" : item === "post002" ? "Sarah_Writes" : item === 'post003' ? "RockinJake11" : "advertisement" + randomInt}</div>
+                                <div style={{fontSize:"14px", fontWeight:"500", color:"#000"}}>{item === "post001" ? "RockinJake11" : item === "post002" ? "Jennie_99" : item === 'post003' ? "Sarah_Writes" : "advertisement" + randomInt}</div>
                             </div>
                             <img src={"/images/Group.svg"}/>
                         </div>
@@ -170,7 +174,19 @@ function Home() {
                                     randomInt={randomInt}
                                 />
                             :
-                            <img src={`/images/${item}.png`}/>
+                            <img
+                                src={`/images/${item}.png`}
+                                className={"cursor"}
+                                onClick={() => {
+                                    const fields = {
+                                        ad_name: item,
+                                        nickname: nickname,
+                                        is_pop_up: false,
+                                        is_button: false
+                                    };
+                                    addRecordToAirtable(fields);
+                                }}
+                            />
                         }
                         <div className={"h10"}/>
                         <div className={"flexRow flexAlign-between"} style={{padding:"0px 16px"}}>
@@ -216,28 +232,27 @@ function Home() {
                         placeholder="Enter nickname"
                         style={{
                             position: 'absolute',
-                            bottom: '7%',
-                            left: '40%',
+                            bottom: '6%',
+                            left: '24%',
                             padding: '10px',
                             fontSize: '16px',
                             width: '80%',
-                            maxWidth: '160px',
+                            maxWidth: '240px',
                             boxSizing: 'border-box',
                         }}
                     />
-                    <button
+                    <div
                         onClick={handleEnter}
                         style={{
                             position: 'absolute',
-                            bottom: '7%',
-                            left: '74%',
-                            padding: '10px 20px',
-                            fontSize: '16px',
+                            bottom: '6%',
+                            left: '80%',
+                            width:"16%",
+                            height:"8%",
                             cursor: 'pointer',
+                            backgroundColor:"none",
                         }}
-                    >
-                        Enter
-                    </button>
+                    />
                 </div>
             </ReactModal>
             <ReactModal
