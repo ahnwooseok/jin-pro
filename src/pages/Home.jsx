@@ -73,7 +73,7 @@ function Home() {
             // 추가적인 처리 로직 추가 가능
             setModalOpen(false);
         } else {
-            alert('Please enter your nickname.');
+            alert('Please enter your email adress.');
         }
     };
 
