@@ -139,7 +139,7 @@ function Home() {
                             <div className={"flexRow flexAlign-column"}>
                                 {item === "ad" ? <img src={`/images/advertise_img.png`} style={{width:"40px", height:"40px"}}/> : <img src={`/images/profile${item.slice(-1)}.png`} style={{width:"40px", height:"40px"}}/>}
                                 <div className={"w6"}/>
-                                <div style={{fontSize:"14px", fontWeight:"500", color:"#000"}}>{item === "post001" ? "RockinJake11" : item === "post002" ? "Jennie_99" : item === 'post003' ? "Sarah_Writes" : "advertisement" + randomInt}</div>
+                                <div style={{fontSize:"14px", fontWeight:"500", color:"#000"}}>{item === "post001" ? "Jennie_99" : item === "post002" ? "Sarah_Writes" : item === 'post003' ? "RockinJake11" : "advertisement" + randomInt}</div>
                             </div>
                             <img src={"/images/Group.svg"}/>
                         </div>
