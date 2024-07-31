@@ -64,7 +64,7 @@ function App() {
             <div className={"flexColumn flexAlign-column"} style={{width:"100vw", maxWidth:"500px"}}>
                 <div className={"h12"}/>
                 <div className={"flexRow flexAlign-between w-full"} style={{padding:"0px 20px"}}>
-                    <img src={"/images/logos_instagram.svg"} className={"cursor"} onClick={()=>{routerPush("/")}}/>
+                    <img src={"/images/logos_instagram.png"} className={"cursor"} onClick={()=>{routerPush("/")}} style={{width:"123px", height:"35px"}}/>
                     <div className={"flexRow flexAlign-column'"}>
                         <img src={"/images/Vector1.svg"}/>
                         <div className={"w24"}/>

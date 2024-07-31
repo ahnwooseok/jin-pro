@@ -12,18 +12,40 @@ function Home() {
 
     const [postArr, setPostArr] = useState([]);
     const [randomInt, setRandomInt] = useState(null)
+    const [randomIntRendered, setRandomIntRendered] = useState(false)
 
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    async function start() {
+        const url = 'https://43kyrbbygrzu3obncdakoykfr40esegc.lambda-url.ap-northeast-2.on.aws/';
+        const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
+
+
+        try {
+            const response = await axios.post(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': apiKey
+                }
+            });
+            console.log('Record added successfully:', response.data.counter);
+            setRandomInt(response.data.counter)
+            setModalOpen(false);
+            setRandomIntRendered(true)
+        } catch (error) {
+            console.error('Error adding record:', error);
+        }
+    }
+
     useEffect(() => {
         const initialPostArr = ["post001", "post002", "post003", "ad"];
         // 랜덤으로 배열 재배열
         const shuffledArr = initialPostArr.sort(() => 0.5 - Math.random());
         setPostArr(shuffledArr);
-        setRandomInt(getRandomInt(1, 4))
         console.log("render")
     }, []); // 빈 배열을 의존성으로 전달하여 최초 렌더링 시만 실행
 
@@ -70,8 +92,9 @@ function Home() {
         // }
         if (nickname.length !== 0) {
             console.log('Valid nickname:', nickname);
+            // setModalOpen(false);
             // 추가적인 처리 로직 추가 가능
-            setModalOpen(false);
+            start()
         } else {
             alert('Please enter your email adress.');
         }
@@ -130,6 +153,8 @@ function Home() {
         }
     }
 
+
+
     return (
         <div className="w-full">
             {postArr.map((item, idx) => {
@@ -172,6 +197,7 @@ function Home() {
                                     modalOpen={modalOpen}
                                     setModalOpen2={setModalOpen2}
                                     randomInt={randomInt}
+                                    randomIntRendered={randomIntRendered}
                                 />
                             :
                             <img
@@ -229,7 +255,7 @@ function Home() {
                         type="text"
                         value={nickname}
                         onChange={(e) => setNickname(e.target.value)}
-                        placeholder="Enter nickname"
+                        placeholder="Enter your CloudResearch id"
                         style={{
                             position: 'absolute',
                             bottom: '6%',
@@ -289,6 +315,7 @@ function Home() {
                                 addRecordToAirtable(fields);
                                 setModalOpen2(false)
                                 setModalCount(1)
+                                window.location.reload()
                             }}
                             style={{
                                 position: 'absolute',

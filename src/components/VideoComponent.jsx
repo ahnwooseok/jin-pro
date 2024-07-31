@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt, modalOpen}) => {
+const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt, modalOpen, randomIntRendered}) => {
     const videoRef = useRef(null);
     const [isVideoEnded, setIsVideoEnded] = useState(false);
 
@@ -63,6 +63,7 @@ const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt,
 
 
     return (
+        randomIntRendered &&
         <div style={{ position: 'relative' }} onClick={()=>{if(isVideoEnded) addRecordToAirtable({...fields, "ad_name": `ad-${randomInt}-videoEnd`});}}>
             <video
                 ref={videoRef}
