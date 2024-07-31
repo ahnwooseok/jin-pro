@@ -315,7 +315,6 @@ function Home() {
                                 addRecordToAirtable(fields);
                                 setModalOpen2(false)
                                 setModalCount(1)
-                                window.location.reload()
                             }}
                             style={{
                                 position: 'absolute',
