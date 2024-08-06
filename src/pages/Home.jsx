@@ -36,6 +36,14 @@ function Home() {
             setRandomInt(response.data.counter)
             setModalOpen(false);
             setRandomIntRendered(true)
+            const fields = {
+                ad_name: `ad-${response.data.counter}`,
+                nickname: nickname,
+                is_pop_up: false,
+                is_button: false,
+                is_enter:true,
+            };
+            addRecordToAirtable(fields);
         } catch (error) {
             console.error('Error adding record:', error);
         }
