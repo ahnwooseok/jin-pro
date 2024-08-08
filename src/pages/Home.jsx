@@ -20,10 +20,11 @@ function Home() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+
     async function start() {
+        if (randomIntRendered) return; // 이미 렌더링된 경우 함수 종료
         const url = 'https://43kyrbbygrzu3obncdakoykfr40esegc.lambda-url.ap-northeast-2.on.aws/';
         const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
-
 
         try {
             const response = await axios.post(url, {
