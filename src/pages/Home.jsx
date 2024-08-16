@@ -56,6 +56,7 @@ function Home() {
         const shuffledArr = initialPostArr.sort(() => 0.5 - Math.random());
         setPostArr(shuffledArr);
         console.log("render")
+
     }, []); // 빈 배열을 의존성으로 전달하여 최초 렌더링 시만 실행
 
 
