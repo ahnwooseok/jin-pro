@@ -23,19 +23,21 @@ function Home() {
 
     async function start() {
         if (randomIntRendered) return; // 이미 렌더링된 경우 함수 종료
-        const url = 'https://43kyrbbygrzu3obncdakoykfr40esegc.lambda-url.ap-northeast-2.on.aws/';
-        const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
+        setIsLoading(true)
+        const url = 'https://qxelz3t527.execute-api.ap-northeast-2.amazonaws.com/test/counterLambda';
+        // const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
 
         try {
             const response = await axios.post(url, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': apiKey
+                    // 'Authorization': apiKey
                 }
             });
             console.log('Record added successfully:', response.data.counter);
             setRandomInt(response.data.counter)
             setModalOpen(false);
+            setIsLoading(false)
             setRandomIntRendered(true)
             const fields = {
                 ad_name: `ad-${response.data.counter}`,
@@ -104,7 +106,10 @@ function Home() {
             console.log('Valid nickname:', nickname);
             // setModalOpen(false);
             // 추가적인 처리 로직 추가 가능
-            start()
+            if(isLoading) return;
+            else{
+                start()
+            }
         } else {
             alert('Please enter your email adress.');
         }
@@ -136,6 +141,8 @@ function Home() {
     };
     const [modalOpen2, setModalOpen2] = useState(false)
     const [modalCount, setModalCount] = useState(1)
+    const [isLoading, setIsLoading] = useState(false)
+
 
     // Airtable API 요청 함수
     async function addRecordToAirtable(fields) {
@@ -290,6 +297,7 @@ function Home() {
                         }}
                     />
                 </div>
+                {isLoading ? <div className={"loader absolute"} style={{left:"50%", top:"50%"}}/> : ""}
             </ReactModal>
             <ReactModal
                 isOpen={modalOpen2}

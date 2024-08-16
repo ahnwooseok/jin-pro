@@ -59,7 +59,9 @@ function App() {
 
         return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 정리
     }, []);
+
     return (
+
         <div className={"flexAlign"} style={{width:"100vw"}}>
             <div className={"flexColumn flexAlign-column"} style={{width:"100vw", maxWidth:"500px"}}>
                 <div className={"h12"}/>
