@@ -540,3 +540,6 @@ input::placeholder{
   animation:l4 1s infinite steps(10);
 }
 @keyframes l4 {to{transform: rotate(1turn)}}
+input::placeholder {
+  font-size: 12px; /* 원하는 폰트 크기로 설정 */
+}

@@ -275,13 +275,15 @@ function Home() {
                         placeholder="Enter your CloudResearch id"
                         style={{
                             position: 'absolute',
-                            bottom: '6%',
+                            bottom: '6.5%',
                             left: '24%',
                             padding: '10px',
-                            fontSize: '16px',
-                            width: '80%',
-                            maxWidth: '240px',
+                            fontSize: '12px',
+                            width: '50%',
+                            maxWidth: '200px',
                             boxSizing: 'border-box',
+                            border: "none",
+                            backgroundColor:"#fef4e8"
                         }}
                     />
                     <div

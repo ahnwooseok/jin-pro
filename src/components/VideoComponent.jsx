@@ -69,6 +69,8 @@ const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt,
                 ref={videoRef}
                 width="100%"
                 onEnded={handleVideoEnd}
+                playsInline
+                webkit-playsinline
                 controls={false} // Remove default controls
             >
                 <source src={`/images/ad-${randomInt}.mp4`} type="video/mp4" />
