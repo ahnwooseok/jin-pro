@@ -72,6 +72,7 @@ const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt,
                 playsInline
                 webkit-playsinline
                 controls={false} // Remove default controls
+                preload="metadata"  // 여기에서 메타데이터만 로드
             >
                 <source src={`/images/ad-${randomInt}.mp4`} type="video/mp4" />
                 Your browser does not support the video tag.
