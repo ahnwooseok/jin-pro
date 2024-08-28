@@ -22,7 +22,7 @@ function Home() {
 
 
     async function start() {
-        if (randomIntRendered) return; // 이미 렌더링된 경우 함수 종료
+        if (randomIntRendered || isLoading) return; // 이미 렌더링된 경우 함수 종료
         setIsLoading(true)
         const url = 'https://uz0z2s1zeg.execute-api.ap-northeast-2.amazonaws.com/default/counterLambda';
         // const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
