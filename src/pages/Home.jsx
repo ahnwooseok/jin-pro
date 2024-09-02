@@ -49,6 +49,7 @@ function Home() {
             addRecordToAirtable(fields);
         } catch (error) {
             console.error('Error adding record:', error);
+            setIsLoading(false);
         }
     }
 
@@ -95,23 +96,11 @@ function Home() {
         return regex.test(nickname);
     };
     const handleEnter = () => {
-        // if (validateNickname(nickname)) {
-        //     console.log('Valid nickname:', nickname);
-        //     // 추가적인 처리 로직 추가 가능
-        //     setModalOpen(false);
-        // } else {
-        //     alert('Nickname must be 5-20 characters long and include both letters and numbers.');
-        // }
-        if (nickname.length !== 0) {
+        if (nickname.length !== 0 && !isLoading) { // Check isLoading before calling start
             console.log('Valid nickname:', nickname);
-            // setModalOpen(false);
-            // 추가적인 처리 로직 추가 가능
-            if(isLoading) return;
-            else{
-                start()
-            }
-        } else {
-            alert('Please enter your email adress.');
+            start(); // Start function is called only if it's not loading
+        } else if (nickname.length === 0) {
+            alert('Please enter your email address.');
         }
     };
 
