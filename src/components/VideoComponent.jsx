@@ -79,7 +79,7 @@ const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt,
             </video>
             {isVideoEnded && (
                 <div style={styles.overlay}>
-                    Video has ended. Clicks are disabled.
+                    This ad no longer exists
                 </div>
             )}
         </div>

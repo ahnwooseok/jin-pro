@@ -178,7 +178,7 @@ function Home() {
                         </div>
                         <div className={"h8"}/>
                         {item === "ad" ?
-                            randomInt > 2 ?
+                            randomInt > 3 ?
                                 <img
                                     className={"cursor"}
                                     src={`/images/ad-${randomInt}.png`}
@@ -316,7 +316,7 @@ function Home() {
                         <div
                             onClick={(event)=>{
                                 event.stopPropagation()
-                                alert("survey test complete!")
+                                alert("The product has not been released yet.")
                                 const fields = {
                                     ad_name: `ad-${randomInt}`,
                                     nickname: nickname,
