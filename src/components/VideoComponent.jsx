@@ -62,6 +62,8 @@ const VideoComponent = ({ fields, addRecordToAirtable, setModalOpen2, randomInt,
     };
 
 
+
+
     return (
         randomIntRendered &&
         <div style={{ position: 'relative' }} onClick={()=>{if(isVideoEnded) addRecordToAirtable({...fields, "ad_name": `ad-${randomInt}-videoEnd`});}}>
