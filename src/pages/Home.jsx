@@ -137,7 +137,7 @@ function Home() {
 
     // Airtable API 요청 함수
     async function addRecordToAirtable(fields) {
-        const url = 'https://api.airtable.com/v0/appESpyEVVTlFiHKG/statistics';
+        const url = 'https://api.airtable.com/v0/appbESyRwcJEoMoQ7/statistcs';
         const apiKey = 'Bearer patFjwcwyHdZ3J4Pk.5493bc8317039dce3f81a22e049d8de3077d959455e7c34cfa2e95c110e7f872';
 
         const data = {
